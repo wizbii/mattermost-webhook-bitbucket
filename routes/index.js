@@ -125,11 +125,11 @@ function postToServer(postContent, hookid, matterUrl) {
 
 router.post('/hooks/:hookid', function(req, res, next) {
     console.log("Received update from Bitbucket");
-    console.log(req.body.data.repository.full_name);
+    console.log(req.body.repository.full_name);
     var hookId = req.params.hookid;
-    var actor = req.body.data.actor.display_name;
-    var repository = req.body.data.repository.full_name;
-    var change = req.body.data.push.changes[0];
+    var actor = req.body.actor.display_name;
+    var repository = req.body.repository.full_name;
+    var change = req.body.push.changes[0];
     var postContent = "";
 
     if (change.commits.length > 1) {
