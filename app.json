@@ -1,0 +1,10 @@
+{
+  "name": "Bitbucket Mattermost Bridge",
+  "description": "Serves as a bridge that translates the Bitbucket webhooks into Mattermost webhooks.",
+  "repository": "https://github.com/wizbii/mattermost-webhook-bitbucket",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/3/32/Atlassian_Bitbucket_Logo.png",
+  "keywords": [
+    "mattermost",
+    "bitbucket"
+  ]
+}
