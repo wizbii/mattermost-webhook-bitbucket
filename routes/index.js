@@ -124,28 +124,31 @@ function postToServer(postContent, hookid, matterUrl) {
 }
 
 router.post('/hooks/:hookid', function(req, res, next) {
-    console.log("Received update from JIRA");
+    console.log("Received update from Bitbucket");
+    console.log(req.body.data.repository.full_name);
     var hookId = req.params.hookid;
-    var actor = req.body.actor.display_name;
-    var repository = req.body.respository.full_name;
-    var change = req.body.push.changes[0];
+    var actor = req.body.data.actor.display_name;
+    var repository = req.body.data.repository.full_name;
+    var change = req.body.data.push.changes[0];
     var postContent = "";
 
     if (change.commits.length > 1) {
-      postContent += "[" + repository + "/"  change.new.name + "]" + change.commits.length + " new commits:\n";
+      postContent += "[" + repository + "/" + change.new.name + "] " + change.commits.length + " new commits:\n";
     }
     change.commits.forEach(function(commit) {
-      postContent += "[" + repository + "/"  change.new.name + "]";
-      postContent += commit.hash + ": ";
-      postContent += commit.message + "\n";
+      postContent += "[" + repository + "/" + change.new.name + "] ";
+      postContent += "[" + commit.hash.substr(0, 12) + "](" + commit.links.html.href + "): ";
+      postContent += commit.message;
     });
+
+    console.log(postContent);
 
     var matterUrl = req.query.matterurl;
 
     postToServer(postContent, hookId, matterUrl);
 
     res.render('index', {
-        title: 'JIRA Mattermost Bridge - beauty, posted to JIRA'
+        title: 'Bitbucket Mattermost Bridge - beauty, posted to Bitbucket'
     });
 });
 
