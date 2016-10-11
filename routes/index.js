@@ -137,7 +137,7 @@ router.post('/hooks/:hookid', function(req, res, next) {
     }
     change.commits.forEach(function(commit) {
       postContent += "[" + repository + "/" + change.new.name + "] ";
-      postContent += "[" + commit.hash.substr(0, 12) + "](" + commit.links.html.href + "): ";
+      postContent += "[" + commit.hash.substr(0, 12) + "](" + commit.links.html.href + ") (" + actor + "): ";
       postContent += commit.message;
     });
 
