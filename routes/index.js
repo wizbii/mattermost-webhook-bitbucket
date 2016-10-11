@@ -127,7 +127,7 @@ router.post('/hooks/:hookid', function(req, res, next) {
     console.log("Received update from Bitbucket");
     console.log(req.body.repository.full_name);
     var hookId = req.params.hookid;
-    var actor = req.body.actor.display_name;
+    var actor = req.body.actor.username;
     var repository = req.body.repository.full_name;
     var change = req.body.push.changes[0];
     var postContent = "";
