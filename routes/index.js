@@ -127,7 +127,6 @@ router.post('/hooks/:hookid', function(req, res, next) {
     console.log("Received update from Bitbucket");
     console.log(req.body.repository.full_name);
     var hookId = req.params.hookid;
-    var actor = req.body.actor.username;
     var repository = req.body.repository.full_name;
     var change = req.body.push.changes[0];
     var postContent = "";
@@ -137,7 +136,7 @@ router.post('/hooks/:hookid', function(req, res, next) {
     }
     change.commits.forEach(function(commit) {
       postContent += "[" + repository + "/" + change.new.name + "] ";
-      postContent += "[" + commit.hash.substr(0, 12) + "](" + commit.links.html.href + ") (" + actor + "): ";
+      postContent += "[" + commit.hash.substr(0, 12) + "](" + commit.links.html.href + ") (" + commit.author.user.username + "): ";
       postContent += commit.message;
     });
 
