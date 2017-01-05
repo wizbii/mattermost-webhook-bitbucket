@@ -15,6 +15,11 @@ Set the following environment variables to provide the Mattermost server details
 * Configure Bitbucket Webhooks to forward the hook (for the required JQL) to `http://<jira-matter-bridge-server>:3000/hooks/<mattermost hook id>`
 * That's it.
 
+## Docker Version
+
+* Change your environment variable in docker-compose.yml
+* Execute ```docker-compose up```
+
 ## Hosted Version
 
 * The app is hosted on a free dyno at https://matterhost-webhook-bitbucket.herokuapp.com/
