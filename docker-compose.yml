@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  bridge:
+    build: .
+    environment:
+      - MATTERMOST_SERVER_PORT=443
+      - MATTERMOST_SERVER=chat.example.org
+      - MATTERMOST_SERVER_PROTO=https
+      - MATTERMOST_SERVER_PATH=/hooks/
+    ports:
+      - 3000
+
+networks:
+  default:
+    external:
+      name: main
